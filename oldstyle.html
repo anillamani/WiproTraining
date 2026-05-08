@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pure Functions - Traditional Way</title>
+</head>
+
+<body>
+
+<h2>Traditional Way (Using Loops)</h2>
+
+<script>
+    const salaries = [45000, 57000, 36000];
+
+    document.writeln("Original Salaries: " + salaries + "<br>");
+
+    const newSalaries = [];
+
+    for (let i = 0; i < salaries.length; i++) {
+        newSalaries.push(salaries[i] + 1000);
+    }
+
+    document.writeln("Updated Salaries: " + newSalaries + "<br>");
+
+    // -------------------------------
+    // 2. Filter salaries > 50000
+    // -------------------------------
+    const highlyPaidEmployees = [];
+
+    for (let i = 0; i < salaries.length; i++) {
+        if (salaries[i] > 50000) {
+            highlyPaidEmployees.push(salaries[i]);
+        }
+    }
+
+    document.writeln("Highly Paid Employees: " + highlyPaidEmployees + "<br>");
+
+    // -------------------------------
+    // 3. Total salary calculation
+    // -------------------------------
+    let totalSalary = 0;
+
+    for (let i = 0; i < salaries.length; i++) {
+        totalSalary += salaries[i];
+    }
+
+    document.writeln("Total Salary: " + totalSalary);
+
+</script>
+
+</body>
+</html>

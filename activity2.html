@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Calculator</title>
+    <link rel="stylesheet" href="activity2.css">
+</head>
+
+<body>
+    <h1>Employee Salary Calculator</h1>
+    <form id="salaryForm">
+        <label>Employee Name: <input type="text" id="empName" required></label><br><br>
+        <label>Basic Monthly Salary: <input type="number" id="basicSalary" min="0" step="0.01" required></label><br><br>
+        <label>Number of Working Days: <input type="number" id="workingDays" min="0" max="30" required></label><br><br>
+        <label>Bonus Amount: <input type="number" id="bonus" min="0" step="0.01" required></label><br><br>
+        <button type="submit">Calculate Salary</button>
+    </form>
+    <div id="result"></div>
+    <script src="activity2.js"></script>
+</body>
+
+</html>

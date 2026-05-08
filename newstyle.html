@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pure Functions - Modern Way</title>
+</head>
+
+<body>
+
+<h2>Modern Way (Pure Functions)</h2>
+
+<script id="">
+    
+    // 🧾 Original data
+    const salaries = [45000, 57000, 36000];
+
+    document.writeln("Original Salaries: " + salaries + "<br>");
+
+    const updatedSalaries = salaries.map(salary => salary + 1000);
+
+    document.writeln("Updated Salaries: " + updatedSalaries + "<br>");
+
+    const highlyPaidEmployees = salaries.filter(salary => salary > 50000);
+
+    document.writeln("Highly Paid Employees: " + highlyPaidEmployees + "<br>");
+
+  
+    const totalSalary = salaries.reduce((sum, salary) => sum + salary, 0);
+
+    document.writeln("Total Salary: " + totalSalary);
+
+</script>
+</body>
+</html>

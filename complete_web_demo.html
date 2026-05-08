@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<!-- ============================================
+     COMPREHENSIVE HTML & CSS DEMO
+     Covers: All requested topics with explanations
+     ============================================ -->
+
+<!-- ==================== STEP 1: HTML TEMPLATE & SEMANTIC HTML ==================== -->
+<!-- Using semantic HTML5 structure for better accessibility and SEO -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==================== STEP 2: META TAGS & RESPONSIVE DESIGN ==================== -->
+    <!-- Responsive Design - viewport meta tag for mobile-friendly design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive HTML5 Demo with all modern features">
+    <meta name="keywords" content="HTML, CSS, Bootstrap, Responsive, Accessibility">
+    
+    <title>Complete Web Development Demo</title>
+
+    <!-- ==================== STEP 3: EXTERNAL CSS (Bootstrap 5.3.8) ==================== -->
+    <!-- External CSS - Bootstrap 5.3.8 from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- ==================== STEP 4: INTERNAL CSS ==================== -->
+    <!-- Internal CSS - Styles defined in the same file -->
+    <style>
+        /* ==================== BOX MODEL DEMO ==================== */
+        /* The CSS Box Model: margin, border, padding, content */
+        
+        /* Original .box class from your code */
+        .box {
+            border: 6px solid blue;
+            width: 200px;
+            padding: 30px;    /* space between border and content */
+            margin: 60px;    /* space between elements */
+            background-color: lightblue;
+        }
+
+        .box-model-demo {
+            /* Content area */
+            width: 200px;
+            padding: 20px;
+            border: 5px solid #0d6efd;
+            margin: 30px;
+            background-color: #e7f1ff;
+        }
+
+        /* Original .header-container class from your code */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 3px solid blue;
+            background-color: grey;
+            padding: 20px;
+            color: aliceblue;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        /* Original .container1 class from your code */
+        .container1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid blue;
+            background-color: cyan;
+            padding: 20px;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        /* ==================== CSS GRID LAYOUT ==================== */
+        .custom-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* ==================== TYPOGRAPHY ==================== */
+        .custom-typography {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+        }
+
+        .custom-typography h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* ==================== ANIMATIONS & TRANSITIONS ==================== */
+        .animated-box {
+            width: 100px;
+            height: 100px;
+            background-color: #0d6efd;
+            transition: all 0.5s ease;  /* Smooth transition */
+        }
+
+        .animated-box:hover {
+            transform: rotate(45deg) scale(1.2);
+            background-color: #198754;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .keyframe-animation {
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        /* ==================== CSS-IN-JS STYLE (Inline Styles) ==================== */
+        /* Using style attribute for inline CSS */
+        
+        /* ==================== ACCESSIBILITY STYLES ==================== */
+        .focus-visible:focus {
+            outline: 3px solid #ffc107;
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .box-model-demo {
+                border-width: 8px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .animated-box {
+                transition: none;
+            }
+            .keyframe-animation {
+                animation: none;
+            }
+        }
+
+        /* ==================== RESPONSIVE DESIGN PATTERNS ==================== */
+        /* Mobile-first responsive design */
+        
+        @media (max-width: 576px) {
+            .custom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 577px) and (max-width: 992px) {
+            .custom-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ==================== CUSTOM BUTTON STYLES ==================== */
+        .btn-custom {
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* ==================== NAVBAR CUSTOMIZATION ==================== */
+        .custom-navbar {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            padding: 15px 0;
+        }
+
+        .custom-navbar .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .custom-navbar .nav-link {
+            padding: 10px 20px !important;
+            margin: 0 5px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-navbar .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== STEP 5: ACCESSIBILITY (A11y) ==================== -->
+    <!-- Skip link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ==================== STEP 6: NAVBAR ==================== -->
+    <!-- Custom Navbar with Bootstrap -->
+    <nav class="navbar navbar-expand-lg custom-navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">🚀 DevDemo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== STEP 7: MAIN CONTENT (Semantic HTML) ==================== -->
+    <main id="main-content" role="main">
+        
+        <!-- Hero Section -->
+        <section id="home" class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold custom-typography">Complete Web Dev Demo</h1>
+                        <p class="lead custom-typography">Learn HTML5, CSS3, Bootstrap, and modern web technologies</p>
+                        
+                        <!-- ==================== STEP 8: BUTTON ENHANCEMENTS ==================== -->
+                        <button class="btn btn-primary btn-custom me-2" type="button">Get Started</button>
+                        <button class="btn btn-outline-secondary btn-custom" type="button">Learn More</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- ==================== STEP 9: SVG GRAPHICS ==================== -->
+                        <!-- Inline SVG for scalable graphics -->
+                        <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="50" y="50" width="300" height="200" rx="20" fill="url(#grad1)" />
+                            <circle cx="200" cy="150" r="60" fill="white" opacity="0.3" />
+                            <text x="200" y="160" text-anchor="middle" fill="white" font-size="24" font-weight="bold">SVG Graphics</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">About Section (Semantic HTML)</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <!-- ==================== STEP 10: CARD COMPONENT ==================== -->
+                        <article class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">Semantic HTML</h3>
+                                <p class="card-text">Using proper semantic tags like &lt;article&gt;, &lt;section&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;header&gt;, &lt;footer&gt;</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <article class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">Accessibility</h3>
+                                <p class="card-text">ARIA labels, roles, skip links, focus states, and screen reader support</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <article class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">Responsive</h3>
+                                <p class="card-text">Mobile-first design with Bootstrap grid and media queries</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Box Model Demo Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">CSS Box Model Demo</h2>
+                <div class="text-center">
+                    <!-- ==================== STEP 11: BOX MODEL ==================== -->
+                    <!-- Original .box class from your code -->
+                    <div class="box">
+                        One Box is created
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Header Container (Flexbox) -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Flexbox Header (Logo - Menu - Profile)</h2>
+                <!-- Original .header-container class from your code -->
+                <div class="header-container">
+                    <div><strong>Logo</strong></div>
+                    <div><strong>Menu</strong></div>
+                    <div><strong>Profile</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container1 (Buttons) -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Button Container</h2>
+                <!-- Original .container1 class from your code -->
+                <div class="container1">
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Layout Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">CSS Grid Layout</h2>
+                <!-- ==================== STEP 12: CSS GRID ==================== -->
+                <div class="custom-grid">
+                    <div class="grid-item">Grid Item 1</div>
+                    <div class="grid-item">Grid Item 2</div>
+                    <div class="grid-item">Grid Item 3</div>
+                    <div class="grid-item">Grid Item 4</div>
+                    <div class="grid-item">Grid Item 5</div>
+                    <div class="grid-item">Grid Item 6</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animation Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Animations & Transitions</h2>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <h5>Hover Transition</h5>
+                        <!-- ==================== STEP 13: TRANSITIONS ==================== -->
+                        <div class="animated-box mx-auto mt-3"></div>
+                        <p class="mt-2">Hover over the box!</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h5>Keyframe Animation</h5>
+                        <!-- ==================== STEP 14: KEYFRAME ANIMATIONS ==================== -->
+                        <div class="keyframe-animation bg-primary text-white p-4 rounded">
+                            <strong>Slide In Animation</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multimedia Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Multimedia (Audio & Video)</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <h5>Audio Player</h5>
+                        <!-- ==================== STEP 15: AUDIO ==================== -->
+                        <!-- Note: For local file:// protocol, audio may show security warning. Use local server for best results. -->
+                        <div class="card p-3">
+                            <audio controls class="w-100" aria-label="Sample audio player">
+                                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <small class="text-muted">Note: If audio doesn't load, it's due to browser security with file:// protocol</small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <h5>Video Player</h5>
+                        <!-- ==================== STEP 16: VIDEO ==================== -->
+                        <!-- Note: For local file:// protocol, videos may show security warning. Use local server for best results. -->
+                        <div class="ratio ratio-16x9">
+                            <video controls class="w-100" aria-label="Sample video player">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                Your browser does not support the video element.
+                            </video>
+                        </div>
+                        <small class="text-muted">Note: If video doesn't load, it's due to browser security with file:// protocol</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Geolocation Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Geolocation API</h2>
+                <div class="text-center">
+                    <!-- ==================== STEP 17: GEOLOCATION ==================== -->
+                    <button class="btn btn-info btn-custom" onclick="getLocation()" type="button">
+                        📍 Get My Location
+                    </button>
+                    <p id="location-result" class="mt-3">Click the button to get your coordinates</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Storage Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Web Storage (LocalStorage)</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Save Data</h5>
+                        <!-- ==================== STEP 18: WEB STORAGE ==================== -->
+                        <input type="text" id="storage-input" class="form-control mb-2" placeholder="Enter your name">
+                        <button class="btn btn-success" onclick="saveData()" type="button">Save to LocalStorage</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Retrieve Data</h5>
+                        <p id="storage-output" class="form-control p-3 bg-light">No data saved yet</p>
+                        <button class="btn btn-primary" onclick="loadData()" type="button">Load from LocalStorage</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Attribute Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Inline CSS (Style Attribute)</h2>
+                <div class="text-center">
+                    <!-- ==================== STEP 19: STYLE ATTRIBUTE ==================== -->
+                    <div style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4); padding: 30px; border-radius: 15px; color: white;">
+                        <h4>Inline Style Attribute</h4>
+                        <p>This element uses style="..." directly in the HTML tag</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Advanced Components</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- ==================== STEP 20: BOOTSTRAP COMPONENTS ==================== -->
+                        <!-- Accordion -->
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        Accordion Item 1
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        This is a Bootstrap accordion component for collapsible content.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Accordion Item 2
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Another collapsible section with more information.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Contact Form</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <!-- ==================== STEP 21: FORMS ==================== -->
+                        <form class="row g-3" onsubmit="event.preventDefault(); alert('Form submitted!');">
+                            <div class="col-md-6">
+                                <label for="inputName" class="form-label">Name</label>
+                                <input type="text" class="form-control focus-visible" id="inputName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control focus-visible" id="inputEmail" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputMessage" class="form-label">Message</label>
+                                <textarea class="form-control focus-visible" id="inputMessage" rows="4" required></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-custom">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== STEP 22: FOOTER (Semantic HTML) ==================== -->
+    <footer class="bg-dark text-white py-4" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white">Home</a></li>
+                        <li><a href="#about" class="text-white">About</a></li>
+                        <li><a href="#services" class="text-white">Services</a></li>
+                        <li><a href="#contact" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white" aria-label="Facebook">📘 Facebook</a>
+                        <a href="#" class="text-white" aria-label="Twitter">🐦 Twitter</a>
+                        <a href="#" class="text-white" aria-label="Instagram">📸 Instagram</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Info</h5>
+                    <p>Email: demo@example.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center mb-0">&copy; 2026 Complete Web Demo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ==================== STEP 23: JAVASCRIPT FOR GEOLOCATION & STORAGE ==================== -->
+    <script>
+        // Geolocation API Function
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        document.getElementById('location-result').innerHTML = 
+                            '📍 Latitude: ' + position.coords.latitude.toFixed(4) + 
+                            '<br>📍 Longitude: ' + position.coords.longitude.toFixed(4);
+                    },
+                    function(error) {
+                        document.getElementById('location-result').innerHTML = 
+                            'Error: ' + error.message;
+                    }
+                );
+            } else {
+                document.getElementById('location-result').innerHTML = 
+                    'Geolocation is not supported by this browser.';
+            }
+        }
+
+        // LocalStorage Functions
+        function saveData() {
+            const input = document.getElementById('storage-input').value;
+            if (input) {
+                localStorage.setItem('userName', input);
+                alert('Data saved to LocalStorage!');
+            } else {
+                alert('Please enter some text first.');
+            }
+        }
+
+        function loadData() {
+            const savedData = localStorage.getItem('userName');
+            if (savedData) {
+                document.getElementById('storage-output').innerHTML = 
+                    '<strong>Saved Data:</strong> ' + savedData;
+            } else {
+                document.getElementById('storage-output').innerHTML = 
+                    'No data found in LocalStorage';
+            }
+        }
+    </script>
+
+    <!-- ==================== STEP 24: BOOTSTRAP JS (5.3.8) ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

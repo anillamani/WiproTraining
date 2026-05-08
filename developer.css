@@ -1,0 +1,14 @@
+.rajveer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+}
+.rajveer:hover{
+    color: rebeccapurple;
+    text-decoration: none;
+}
+nav a{
+    text-decoration: none;
+    color: burlywood;
+}

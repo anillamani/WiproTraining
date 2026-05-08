@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: pink; 
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Employee Management</h2>
+
+<h3>Add / Update Employee</h3>
+
+<input type="hidden" id="empId">
+<input type="text" id="name" placeholder="Enter Name">
+<input type="email" id="email" placeholder="Enter Email">
+
+<button onclick="saveEmployee()">Save</button>
+
+<br><br>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>Actions</th>
+    </tr>
+
+    <tbody id="employeeTable"></tbody>
+</table>
+
+<script>
+
+const API = "https://jsonplaceholder.typicode.com/users";
+
+
+async function loadEmployees() {
+    try {
+        const res = await fetch(API);
+        const data = await res.json();
+
+        const table = document.getElementById("employeeTable");
+
+        table.innerHTML = data.map(emp => `
+            <tr>
+                <td>${emp.name}</td>
+                <td>${emp.email}</td>
+                <td>${emp.company.name}</td>
+                <td>
+                    <button onclick="editEmployee(${emp.id}, '${emp.name}', '${emp.email}')">Edit</button>
+                    <button onclick="deleteEmployee(${emp.id})">Delete</button>
+                </td>
+            </tr>
+        `).join("");
+
+    } catch (error) {
+        alert("Error loading data");
+    }
+}
+
+
+async function saveEmployee() {
+    const id = document.getElementById("empId").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    const method = id ? "PUT" : "POST";
+    const url = id ? `${API}/${id}` : API;
+
+    try {
+        await fetch(url, {
+            method: method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email })
+        });
+
+        alert(id ? "Updated!" : "Added!");
+
+        clearForm();
+        loadEmployees();
+
+    } catch (err) {
+        alert("Something went wrong");
+    }
+}
+
+
+function editEmployee(id, name, email) {
+    document.getElementById("empId").value = id;
+    document.getElementById("name").value = name;
+    document.getElementById("email").value = email;
+}
+
+
+async function deleteEmployee(id) {
+    if (!confirm("Delete this user?")) return;
+
+    try {
+        await fetch(`${API}/${id}`, {
+            method: "DELETE"
+        });
+
+        alert("Deleted!");
+        loadEmployees();
+
+    } catch (err) {
+        alert("Delete failed");
+    }
+}
+
+
+function clearForm() {
+    document.getElementById("empId").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+}
+
+
+loadEmployees();
+
+</script>
+
+</body>
+</html>

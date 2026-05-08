@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .box {
+            margin-top: 15px;
+            padding: 8px;
+            border: 1px solid #770808;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2> E-Shopping Cart</h2>
+
+<button onclick="showNames()">Show Product Names</button>
+<button onclick="showTotal()">Show Total Price</button>
+<button onclick="showFiltered()">Price > 1000</button>
+<button onclick="showItems()">Total Quantity</button>
+
+<div class="box" id="output" >Click a button to see result</div>
+
+<script>
+   
+    let cart = [
+        {id:1,name:"Laptop", price:60000, qty:2,category:"Electronics"},
+        {id:2,name:"Mouse", price:500, qty:5,category:"Electronics"},
+        {id:3,name:"Keyboard", price:1000, qty:3,category:"Electronics"},
+        {id:4,name:"Monitor", price:15000, qty:2,category:"Electronics"},
+    ];
+
+    
+
+    //  map 
+    const showNames = () => {
+        const names = cart.map(item => item.name);
+        output.innerHTML = ` Products: ${names.join(" , ")}`;
+    };
+
+    // reduce
+    const showTotal = () => {
+        const total = cart.reduce(
+            (sum, item) => sum + item.price * item.qty, 0
+        );
+        output.innerHTML = ` Total Cart Value: ₹${total}`;
+    };
+
+    //  filter
+    const showFiltered = () => {
+        const filtered = cart.filter(item => item.price > 1000);
+        output.innerHTML = "Expensive Products:<br>" +
+            filtered.map(i => `${i.name} (₹${i.price})`).join("<br>");
+    };
+    
+    // reduce
+    const showItems = () => {
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        output.innerHTML = `Total Quantity: ${totalQty}`;
+    };
+</script>
+
+</body>
+</html>

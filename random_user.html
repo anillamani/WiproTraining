@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #userInfo {
+      margin-top: 30px;
+      display: none;
+    }
+
+    #userInfo img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+    #userInfo p {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Random User Generator</h1>
+  <p>Click the button to get a random user!</p>
+
+  <button onclick="getUser()">Get Random User</button>
+
+  <div id="userInfo">
+    <img id="userPic" src="" alt="Profile Picture" />
+    <p id="userName"></p>
+    <p id="userEmail"></p>
+  </div>
+
+  <script>
+    function getUser() {
+      fetch("https://randomuser.me/api/")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          var user = data.results[0];
+
+          var name = user.name.first + " " + user.name.last;
+          var email = user.email;
+          var picture = user.picture.large;
+
+          document.getElementById("userName").innerHTML = "Name: " + name;
+          document.getElementById("userEmail").innerHTML = "Email: " + email;
+          document.getElementById("userPic").src = picture;
+
+          document.getElementById("userInfo").style.display = "block";
+        })
+        .catch(function(error) {
+          alert("Something went wrong! " + error);
+        });
+    }
+  </script>
+
+</body>
+</html>

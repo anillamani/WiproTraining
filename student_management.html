@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Flowers School - Student Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .school-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .school-name {
+            color: white;
+        }
+
+        .school-name h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .school-name p {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        nav ul li a.active {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .welcome-section h2 {
+            color: #1e3c72;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-section .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .student-info-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+            display: none;
+            position: relative;
+        }
+
+        .student-info-card.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .student-info-card h3 {
+            color: #1e3c72;
+            font-size: 24px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .info-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-item label {
+            display: block;
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #1e3c72;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Student Photo */
+        .student-photo-section {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .student-photo {
+            display: inline-block;
+        }
+
+        .student-photo .photo-placeholder {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+            border: 3px solid #1e3c72;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #888;
+            margin: 0 auto;
+        }
+
+        .student-img {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #1e3c72;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .student-photo .photo-label {
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30,60,114,0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30,60,114,0.5);
+        }
+
+        .btn-back {
+            background: #666;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        /* Decorative Elements */
+        .decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .decoration-1 {
+            top: 100px;
+            left: 50px;
+            background: white;
+        }
+
+        .decoration-2 {
+            bottom: 100px;
+            right: 50px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+
+    <header>
+        <div class="logo-section">
+            <div class="school-logo">🌸</div>
+            <div class="school-name">
+                <h1>Spring Flowers School</h1>
+                <p>Excellence in Education</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" onclick="showWelcome()">Home</a></li>
+                <li><a href="#" onclick="showProfile()">Student Profile</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section" id="welcomeSection">
+            <h2>Welcome to Spring Flowers School</h2>
+            <p class="subtitle">Your Gateway to Quality Education</p>
+            <p style="color: #666; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 0 auto 30px;">
+                We are delighted to have you as part of our school community. 
+                At Spring Flowers, we believe in nurturing young minds and shaping 
+                bright futures through quality education and holistic development.
+            </p>
+            <button class="btn" onclick="showProfile()">Student Profile</button>
+        </div>
+
+        <div class="welcome-section" id="profileSection" style="display: none;">
+            <h2>Student Profile</h2>
+            <p class="subtitle">Personal Information</p>
+            
+            <div class="student-info-card show">
+                <div class="student-photo-section">
+                    <div class="student-photo">
+                        <img src="student_photo.jpeg" alt="Rajveer Basak" class="student-img">
+                    </div>
+                </div>
+                <h3>Student Details</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <span>Rajveer Basak</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Student ID</label>
+                        <span>SF-2019-0892</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Date of Birth</label>
+                        <span>July 15, 2003</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Class</label>
+                        <span>Class X - Section A</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <span>rajveer.basak@springflowers.edu</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Address</label>
+                        <span>42, Lake Road, Kolkata, West Bengal</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Father's Name</label>
+                        <span>Rupam Basak</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Mother's Name</label>
+                        <span>Soma Basak</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Guardian Phone</label>
+                        <span>+91 94321 09876</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Admission Date</label>
+                        <span>April 1, 2019</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Board Registration</label>
+                        <span>WBCHSE/2019/156789</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-back" onclick="showWelcome()">Back to Home</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Spring Flowers School. All Rights Reserved.</p>
+        <p>Address: 456 Education Lane, Springfield, ST 12345 | Phone: (555) 123-4567</p>
+    </footer>
+
+    <script>
+        function showProfile() {
+            document.getElementById('welcomeSection').style.display = 'none';
+            document.getElementById('profileSection').style.display = 'block';
+        }
+
+        function showWelcome() {
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('welcomeSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

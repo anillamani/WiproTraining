@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!-- ============================================
+     FLEXBOX, RESPONSIVE DESIGN & ANIMATIONS DEMO
+     ============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox, Responsive & Animation Demo</title>
+
+    <style>
+        /* ============================================
+           FEATURE 1: FLEXBOX CONTAINER
+           - display: flex enables flexbox layout
+           - flex-direction: row (default) or column
+           - justify-content: center aligns along main axis
+           - gap: adds space between items
+           ============================================ */
+        .container {
+            display: flex;  /* by default flex-direction is row, cross axis is column */
+            flex-direction: row;  /* to specify the direction of the main axis (row or column) */
+            justify-content: center;  /* to align items along the main axis */
+            gap: 20px;  /* to add space between items, instead of using margin */
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        /* ============================================
+           FEATURE 2: FLEXBOX ITEM (BOX)
+           - Basic box styling for flex items
+           ============================================ */
+        .box {
+            padding: 20px;
+            background-color: lightblue;
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================
+           FEATURE 3: FLEXBOX - COLUMN DIRECTION
+           - Vertical layout example
+           ============================================ */
+        .container-column {
+            display: flex;
+            flex-direction: column;  /* items laid out vertically */
+            align-items: center;  /* to align items along the cross axis */
+            gap: 10px;
+            padding: 20px;
+            background-color: #e0e0e0;
+        }
+
+        /* ============================================
+           FEATURE 4: FLEXBOX - SPACE BETWEEN
+           - Used in navbar for logo left, menu center, profile right
+           ============================================ */
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;  /* distributes space between items */
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        /* ============================================
+           FEATURE 5: CARD WITH POSITIONING
+           - position: relative (parent)
+           - position: absolute (child - badge)
+           ============================================ */
+        .card {
+            position: relative;  /* establishes containing block for absolute children */
+            border: 2px solid black;
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            width: 250px;
+            
+            /* ============================================
+               FEATURE 6: ANIMATIONS
+               - opacity: 0 (start invisible)
+               - animation: fadeIn 1s ease-in forwards
+               - forwards keeps final state
+               ============================================ */
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        /* ============================================
+           FEATURE 7: HOVER EFFECTS
+           - transform: scale for zoom effect
+           - box-shadow for depth
+           ============================================ */
+        .card:hover {
+            transform: scale(1.05);  /* scales up to 105% */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* adds shadow on hover */
+        }
+
+        /* ============================================
+           FEATURE 8: ABSOLUTE POSITIONING (BADGE)
+           - position: absolute places element relative to nearest positioned ancestor
+           - top, right, bottom, left for positioning
+           ============================================ */
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* ============================================
+           FEATURE 9: KEYFRAME ANIMATION
+           - @keyframes defines animation sequence
+           - from (0%) to (100%) states
+           ============================================ */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           FEATURE 10: RESPONSIVE DESIGN - MEDIA QUERIES
+           - Mobile first: design for mobile, then scale up
+           - @media (max-width: 768px) for tablets
+           - @media (max-width: 480px) for mobile
+           ============================================ */
+        
+        /* Tablet styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .card {
+                width: 100%;  /* full width on tablet */
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .box {
+                width: 80px;
+                height: 40px;
+                font-size: 12px;
+            }
+            .navbar-container {
+                padding: 10px;
+                text-align: center;
+            }
+        }
+
+        /* ============================================
+           FEATURE 11: FLEXIBLE IMAGES
+           - max-width: 100% (scales down but never up)
+           - height: auto (maintains aspect ratio)
+           ============================================ */
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* ============================================
+           FEATURE 12: FLUID TYPOGRAPHY
+           - Use em/rem for font sizes that scale
+           - 1em = current font size
+           ============================================ */
+        h1 {
+            font-size: 2em;  /* scales based on parent */
+        }
+        
+        h2 {
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;  /* scales down for smaller screens */
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+
+        /* ============================================
+           FEATURE 13: FLEX WRAP
+           - flex-wrap: wrap allows items to wrap
+           ============================================ */
+        .wrap-container {
+            display: flex;
+            flex-wrap: wrap;  /* items wrap to next line */
+            gap: 15px;
+            padding: 20px;
+            background-color: #fff3cd;
+        }
+
+        .wrap-item {
+            flex: 1 1 200px;  /* flex-grow, flex-shrink, flex-basis */
+            padding: 15px;
+            background-color: #ffc107;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* ============================================
+           FEATURE 14: ALIGN ITEMS (STRETCH)
+           - align-items: stretch fills container
+           ============================================ */
+        .stretch-container {
+            display: flex;
+            align-items: stretch;  /* stretches items to fill container */
+            height: 150px;
+            gap: 10px;
+            padding: 20px;
+            background-color: #d4edda;
+        }
+
+        .stretch-item {
+            padding: 20px;
+            background-color: #28a745;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         SECTION 1: FLEXBOX BASIC (Row Direction)
+         ============================================ -->
+    <h2>1. Flexbox - Row Direction</h2>
+    <div class="container">
+        <div class="box">Item 1</div>
+        <div class="box">Item 2</div>
+        <div class="box">Item 3</div>
+    </div>
+
+    <!-- ============================================
+         SECTION 2: FLEXBOX - Column Direction
+         ============================================ -->
+    <h2>2. Flexbox - Column Direction</h2>
+    <div class="container-column">
+        <div class="box">Column 1</div>
+        <div class="box">Column 2</div>
+        <div class="box">Column 3</div>
+    </div>
+
+    <!-- ============================================
+         SECTION 3: Navbar with Space Between
+         ============================================ -->
+    <h2>3. Navbar (justify-content: space-between)</h2>
+    <div class="navbar-container">
+        <div><strong>Logo</strong></div>
+        <div>Menu</div>
+        <div>Profile</div>
+    </div>
+
+    <!-- ============================================
+         SECTION 4: Cards with Badge (Positioning)
+         ============================================ -->
+    <h2>4. Cards with Badge (Absolute Positioning)</h2>
+    <div style="display: flex; gap: 20px; padding: 20px; flex-wrap: wrap;">
+        <div class="card">
+            <span class="badge">New</span>
+            <h2>Java With React</h2>
+            <p>Learn Java and React together</p>
+        </div>
+        <div class="card" style="animation-delay: 0.2s;">
+            <span class="badge">Popular</span>
+            <h2>Python & Django</h2>
+            <p>Build web applications</p>
+        </div>
+        <div class="card" style="animation-delay: 0.4s;">
+            <span class="badge">Sale</span>
+            <h2>JavaScript Full Stack</h2>
+            <p>Complete web development</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECTION 5: Responsive Image
+         ============================================ -->
+    <h2>5. Responsive Image (max-width: 100%)</h2>
+    <div style="padding: 20px;">
+        <img src="https://via.placeholder.com/600x300" alt="Sample Image" class="responsive-image">
+    </div>
+
+    <!-- ============================================
+         SECTION 6: Flex Wrap Container
+         ============================================ -->
+    <h2>6. Flex Wrap (responsive wrapping)</h2>
+    <div class="wrap-container">
+        <div class="wrap-item">Item 1</div>
+        <div class="wrap-item">Item 2</div>
+        <div class="wrap-item">Item 3</div>
+        <div class="wrap-item">Item 4</div>
+        <div class="wrap-item">Item 5</div>
+    </div>
+
+    <!-- ============================================
+         SECTION 7: Stretch Items
+         ============================================ -->
+    <h2>7. Align Items - Stretch</h2>
+    <div class="stretch-container">
+        <div class="stretch-item">Stretched Item 1</div>
+        <div class="stretch-item">Stretched Item 2</div>
+        <div class="stretch-item">Stretched Item 3</div>
+    </div>
+
+    <!-- ============================================
+         SECTION 8: Responsive Typography
+         ============================================ -->
+    <h2>8. Fluid Typography (em units)</h2>
+    <div style="padding: 20px;">
+        <h1>This is H1 (2em)</h1>
+        <h2>This is H2 (1.5em)</h2>
+        <p>Resize the browser to see typography scale down!</p>
+    </div>
+
+</body>
+</html>
