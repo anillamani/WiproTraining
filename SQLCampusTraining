@@ -1,0 +1,121 @@
+create database campus_nova;
+use campus_nova;
+
+create table students (
+    student_id int primary key,
+    student_name varchar(50),
+    city varchar(50),
+    course_id int,
+    marks int
+);
+
+create table courses (
+    course_id int primary key,
+    course_name varchar(50),
+    department varchar(50),
+    fee int
+);
+
+create table enrollments (
+    enrollment_id int primary key,
+    student_id int,
+    course_id int,
+    enroll_date date
+);
+
+create table temp_logs (
+    log_id int primary key,
+    log_message varchar(100)
+);
+
+insert into students values
+(1, 'Rajveer Basak', 'Asansol', 101, 88),
+(2, 'Meera Iyer', 'Mumbai', 102, 91),
+(3, 'Kabir Khan', 'Pune', 103, 76),
+(4, 'Ananya Roy', 'Kolkata', 101, 84),
+(5, 'Rohan Verma', 'Jaipur', 104, 95);
+
+-- Courses
+insert into courses values
+(101, 'Computer Science', 'IT', 50000),
+(102, 'Business Analytics', 'Management', 45000),
+(103, 'English Literature', 'Arts', 30000),
+(104, 'Data Science', 'IT', 60000);
+
+-- Enrollments
+insert into enrollments values
+(1001, 1, 101, '2025-01-05'),
+(1002, 2, 102, '2025-01-06'),
+(1003, 3, 103, '2025-01-07'),
+(1004, 4, 101, '2025-01-08'),
+(1005, 5, 104, '2025-01-09');
+
+-- Temp logs (for truncate demo)
+insert into temp_logs values
+(1, 'Initial load'),
+(2, 'Data inserted');
+
+select * from students ;
+
+
+-- Students from Asansol (you!)
+select * from students where city = 'Asansol';
+
+-- Students with marks > 85
+select * from students where marks > 85;
+
+-- Show only names and marks
+select student_name, marks from students;
+
+select student_name, marks
+from students
+order by marks desc;
+
+select student_name, marks
+from students
+order by marks desc
+limit 3;
+
+select student_name, marks
+from students
+order by marks desc
+limit 1, 2;
+
+update students
+set city = 'Kolkata'
+where student_id = 1;
+
+select * from students where student_id = 1;
+
+delete from students where student_id = 3;
+
+select * from students;
+
+alter table students
+add email varchar(100);
+
+update students
+set email = 'rajveer@gmail.com'
+where student_id = 1;
+
+describe students;
+select * from students;
+
+select 
+    s.student_name,
+    s.city,
+    c.course_name,
+    c.department,
+    e.enroll_date
+from enrollments e
+join students s on e.student_id = s.student_id
+join courses c on e.course_id = c.course_id;
+
+select * from enrollments ;
+
+
+
+
+   
+   
+   
